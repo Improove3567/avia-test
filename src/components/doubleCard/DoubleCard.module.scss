@@ -1,0 +1,34 @@
+.container {
+    width: 80%;
+    height: 50vh;
+    margin: 0 auto;
+    border-radius: 15px;
+    box-shadow: 5px 5px 5px gray;
+    display: flex;
+    justify-content: space-between;
+}
+
+.pidor {
+    width: 100%;
+    
+}
+
+.line {}
+
+.timeBtn {
+    width: 18%;
+    height: 6vh;
+    background-color: white;
+    border: 1px solid #B7BAC1;
+    border-radius: 10px;
+    margin-left: 10px;
+}
+
+.timeBtnActive {
+    width: 18%;
+    height: 6vh;
+    background-color: '#DDE3EE';
+    border: none;
+    border-radius: 10px;
+    margin-left: 10px;
+}
