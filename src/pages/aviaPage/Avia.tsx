@@ -7,7 +7,7 @@ import { useAppDispatch } from '../../hook';
 import { addTicket } from '../../store/slice';
 import { useNavigate } from 'react-router-dom'
 import React, { useState } from 'react'
-
+import { Dayjs } from 'dayjs';
 
 const Avia: React.FC = () => {
     const dispatch = useAppDispatch();
@@ -165,7 +165,8 @@ const Avia: React.FC = () => {
                         <DatePicker
                             className={scss.date__picker}
                             value={flyValue}
-                            onChange={(newValue: any) => {
+                            onChange={(newValue: Dayjs | null | string) => {
+                                newValue = newValue as Dayjs
                                 const date = newValue?.format()
                                 const concateDate = date.split('T')
                                 setFlyValue(concateDate[0])
@@ -203,7 +204,8 @@ const Avia: React.FC = () => {
                         <DatePicker
                             className={scss.date__picker}
                             value={becomeValue}
-                            onChange={(newValue: any) => {
+                            onChange={(newValue: Dayjs | null | string) => {
+                                newValue = newValue as Dayjs
                                 const date = newValue?.format()
                                 const concateDate = date.split('T')
                                 setBecomeValue(concateDate[0])
