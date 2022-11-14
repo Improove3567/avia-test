@@ -1,7 +1,3 @@
-interface dataType {
-    time: string
-}
-
 export const data = [
     {
         time: '09:20'

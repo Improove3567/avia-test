@@ -1,8 +1,6 @@
-import { Box, Button, Grid, Typography } from '@mui/material';
+import { Box, Grid, Typography } from '@mui/material';
 import React, { useState } from 'react'
 import scss from "./SingleCard.module.scss";
-import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
-import LuggageIcon from '@mui/icons-material/Luggage';
 import { useAppSelector } from '../../hook';
 
 const SingleCard: React.FC = () => {
@@ -112,12 +110,12 @@ const SingleCard: React.FC = () => {
                         }}>
                             <Typography component="p" sx={{
                                 fontSize: '15px',
-                                fontWeight: '700'
+                                fontWeight: '500'
                             }}>
                                 {tickets.from}
                             </Typography><Typography component="p" sx={{
                                 fontSize: '15px',
-                                fontWeight: '700',
+                                fontWeight: '500',
                                 marginTop: '-5px'
                             }}>
                                 {tickets.flyDate}
@@ -201,12 +199,12 @@ const SingleCard: React.FC = () => {
                         }}>
                             <Typography component="p" sx={{
                                 fontSize: '15px',
-                                fontWeight: '700'
+                                fontWeight: '500'
                             }}>
                                 {tickets.where}
                             </Typography><Typography component="p" sx={{
                                 fontSize: '15px',
-                                fontWeight: '700',
+                                fontWeight: '500',
                                 marginTop: '-5px'
                             }}>
                                 {tickets.flyDate}

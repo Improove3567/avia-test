@@ -1,11 +1,11 @@
-import { Box, Button, Grid, Typography } from '@mui/material';
-import React, { useState } from 'react'
+import { Box, Grid, Typography } from '@mui/material';
+import React from 'react'
 import scss from "./DoubleCard.module.scss";
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import LuggageIcon from '@mui/icons-material/Luggage';
 import { useAppSelector } from '../../hook';
 
-const DoubleCard = () => {
+const DoubleCard: React.FC = () => {
     const tickets = useAppSelector(state => state.tickets)
 
     const data = [
@@ -22,19 +22,19 @@ const DoubleCard = () => {
     ]
     return (
         <div className={scss.container}>
-            <div className={scss.pidor}>
+            <div className={scss.wrapper}>
                 {
                     data.map((item) => (
                         <Grid sx={{
                             display: 'flex',
                             width: '100%',
-                            height: '50%'
+                            height: '50%',
                         }}>
                             <Grid sx={{
                                 width: '20%',
                             }}>
                                 <Grid sx={{
-                                    height: '100%'
+                                    height: '100%',
                                 }} >
                                     <Grid sx={{
                                         backgroundColor: '#8BA5D8',
@@ -86,19 +86,19 @@ const DoubleCard = () => {
                                 display: "flex",
                                 justifyContent: "center",
                                 flexDirection: "column",
-                                marginTop: '30px',
+                                alignItems: 'center',
+                                marginTop: '0px',
                                 height: "100%",
+                                borderTop: '1px dashed #B7BAC1',
                             }}>
                                 <Grid sx={{
+                                    width: '100%',
                                     display: "flex",
+                                    alignItems: 'center',
                                     justifyContent: "space-around",
                                     height: "25vh"
                                 }}>
-                                    <Box sx={{
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        flexDirection: 'column'
-                                    }}>
+                                    <Box>
                                         <Typography component="p" sx={{
                                             fontSize: '25px',
                                             fontWeight: 'bold',
@@ -123,12 +123,12 @@ const DoubleCard = () => {
                                     </Box>
                                     <Box sx={{
                                         width: "40%",
-
+                                        marginTop: '10%'
                                     }}>
                                         <Box sx={{
                                             width: "100%",
                                             display: "flex",
-                                            justifyContent: "space-between"
+                                            justifyContent: "space-between",
                                         }}>
                                             <Typography component="p" sx={{
                                                 fontSize: '15px',
@@ -187,10 +187,11 @@ const DoubleCard = () => {
                                             </Typography>
                                         </Box>
                                     </Box>
-                                    <Box sx={{}}>
+                                    <Box>
                                         <Typography component="p" sx={{
                                             fontSize: '25px',
-                                            fontWeight: 'bold'
+                                            fontWeight: 'bold',
+                                            padding: '0'
                                         }}>
                                             12:05
                                         </Typography>
@@ -216,7 +217,6 @@ const DoubleCard = () => {
                                 </Grid>
                             </Grid>
                         </Grid>
-
                     ))
                 }
             </div>
@@ -228,7 +228,18 @@ const DoubleCard = () => {
                 borderLeft: '1px solid  #DDE3EE'
 
             }}>
-                <h1>9 300 ₽</h1>
+                <Typography component='h1' variant='h1' sx={{
+                    fontSize: '30px',
+                    fontWeight: 'bold',
+                    '@media(max-width: 805px)': {
+                        fontSize: '20px',
+                        fontWeight: 'bold'
+                    },
+                    '@media(max-width: 430px)': {
+                        fontSize: '15px',
+                        fontWeight: 'bold'
+                    },
+                }}>9 300 ₽</Typography>
             </Grid>
         </div >
     )

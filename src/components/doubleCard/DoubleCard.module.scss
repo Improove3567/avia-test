@@ -3,17 +3,21 @@
     height: 50vh;
     margin: 0 auto;
     border-radius: 15px;
-    box-shadow: 5px 5px 5px gray;
+    box-shadow: 5px 5px 5px #B7BAC1;
     display: flex;
     justify-content: space-between;
 }
 
-.pidor {
+.wrapper {
     width: 100%;
-    
+
 }
 
-.line {}
+.line {
+    width: 10%;
+    height: 2px;
+    background-color: red;
+}
 
 .timeBtn {
     width: 18%;

@@ -1,10 +1,7 @@
-import { AccountCircle } from '@mui/icons-material';
-import { Button, FormControl, FormHelperText, Grid, Input, InputAdornment, InputLabel, OutlinedInput, TextField, TextFieldProps, Typography } from '@mui/material';
+import { Button, FormControl, FormHelperText, Grid, OutlinedInput, TextField, TextFieldProps, Typography } from '@mui/material';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { Dayjs } from 'dayjs';
-import { Link } from "react-router-dom";
 import scss from "./Avia.module.scss"
 import { useAppDispatch } from '../../hook';
 import { addTicket } from '../../store/slice';
@@ -12,32 +9,26 @@ import { useNavigate } from 'react-router-dom'
 import React, { useState } from 'react'
 
 
-interface state {
-    from: string,
-    where: string,
-    flyDate: string,
-    becomeDate: string
-}
-
 const Avia: React.FC = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
-    const [becomeValue, setBecomeValue] = useState<any>(null);
-    const [flyValue, setFlyValue] = useState<any>(null);
-    const [fromInput, setFromInput] = useState('');
-    const [whereInput, setWhereInput] = useState('');
+    const [becomeValue, setBecomeValue] = useState<string | null>(null);
+    const [flyValue, setFlyValue] = useState<string | null>(null);
+    const [fromInput, setFromInput] = useState<string>('');
+    const [whereInput, setWhereInput] = useState<string>('');
 
-    const [flyDirty, setFlyDirty] = useState(false);
-    const [fromDirty, setFromDirty] = useState(false);
-    const [whereDirty, setWhereDirty] = useState(false);
+    const [flyDirty, setFlyDirty] = useState<boolean>(false);
+    const [fromDirty, setFromDirty] = useState<boolean>(false);
+    const [whereDirty, setWhereDirty] = useState<boolean>(false);
 
-    const [flyError, setFlyError] = useState('Это поле обязательна');
-    const [fromError, setFromError] = useState('Это поле обязательна');
-    const [whereError, setWhereError] = useState('Это поле обязательна');
+    const [flyError, setFlyError] = useState<string>('Это поле обязательна');
+    const [fromError, setFromError] = useState<string>('Это поле обязательна');
+    const [whereError, setWhereError] = useState<string>('Это поле обязательна');
+    let str = '2022-11-22T00:00:00+06:00';
+    let Arrstr = str.split('T')
+    console.log(Arrstr[0]);
 
-    const [error, setError] = useState(false);
-
-    const blurHandler = (e: any) => {
+    const blurHandler = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement, Element>): void => {
         switch (e.target.name) {
             case 'from':
                 setFromDirty(true)
@@ -53,7 +44,7 @@ const Avia: React.FC = () => {
 
     const fromHandleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
         setFromInput(event.target.value)
-        const regex = /^[a-zA-z] ?([a-zA-z]|[a-zA-z] )*[a-zA-z]$/;
+        const regex = (/^[a-zA-z] ?([a-zA-z]|[a-zA-z] )*[a-zA-z]$/);
         if (!regex.test(event.target.value)) {
             setFromError('Некоректное название')
             setFromInput('')
@@ -174,13 +165,10 @@ const Avia: React.FC = () => {
                         <DatePicker
                             className={scss.date__picker}
                             value={flyValue}
-                            onChange={(newValue) => {
-                                let data: Array<object> = []
-                                data.push(newValue.$M + 1, newValue.$D, newValue.$y)
-                                let dataString = JSON.stringify(data)
-                                let noQuotes = dataString.slice(1, -1)
-                                setFlyValue(noQuotes.replace(/,/g, '.'))
-                                setFlyError("")
+                            onChange={(newValue: any) => {
+                                const date = newValue?.format()
+                                const concateDate = date.split('T')
+                                setFlyValue(concateDate[0])
                             }}
                             renderInput={(params) => <TextField {...params} />}
                             InputProps={{
@@ -215,12 +203,10 @@ const Avia: React.FC = () => {
                         <DatePicker
                             className={scss.date__picker}
                             value={becomeValue}
-                            onChange={(newValue) => {
-                                let data: Array<object> = []
-                                data.push(newValue.$M + 1, newValue.$D, newValue.$y)
-                                let dataString = JSON.stringify(data)
-                                let noQuotes = dataString.slice(1, -1)
-                                setBecomeValue(noQuotes.replace(/,/g, '.'))
+                            onChange={(newValue: any) => {
+                                const date = newValue?.format()
+                                const concateDate = date.split('T')
+                                setBecomeValue(concateDate[0])
                             }}
                             renderInput={(params: TextFieldProps) => <TextField {...params} />}
                         />
@@ -256,7 +242,11 @@ const Avia: React.FC = () => {
                         >
                             <Typography component="p" sx={{
                                 textDecoration: 'none',
-                                color: 'white'
+                                color: 'white',
+                                '@media(max-width: 1216px)': {
+                                    fontSize: '12px',
+                                },
+
                             }}>
                                 Найти Билет
                             </Typography>
@@ -268,13 +258,25 @@ const Avia: React.FC = () => {
                             marginRight: '15px',
                             borderRadius: '10px',
                             color: 'white',
-                            alignItems: 'center'
+                            alignItems: 'center',
+                            '@media(max-width: 980px)': {
+                                width: '20%',
+                            },
                         }}
                             onClick={() => submit()}
                         >
                             <Typography component="p" sx={{
                                 textDecoration: 'none',
-                                color: 'white'
+                                color: 'white',
+                                '@media(max-width: 1216px)': {
+                                    fontSize: '12px',
+                                },
+                                '@media(max-width: 980px)': {
+                                    fontSize: '10px',
+                                },
+                                '@media(max-width: 645px)': {
+                                    fontSize: '7px',
+                                },
                             }}>
                                 Найти Билет
                             </Typography>

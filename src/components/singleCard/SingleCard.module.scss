@@ -3,12 +3,10 @@
     height: 30vh;
     margin: 0 auto;
     border-radius: 15px;
-    box-shadow: 5px 5px 5px gray;
+    box-shadow: 5px 5px 5px #B7BAC1;
     display: flex;
     justify-content: space-between;
 }
-
-.line {}
 
 .timeBtn {
     width: 18%;
@@ -28,6 +26,6 @@
     margin-left: 10px;
 }
 
-.icons{
+.icons {
     margin-left: 15px;
 }
